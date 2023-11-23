@@ -5,18 +5,15 @@ import { Request, Response } from 'express';
 const repository = AppDataSource.getRepository(Activity);
 
 export const getActivities = async (request: Request, response: Response) => {
-  const activities = await repository.find();
+  const { id } = request.params;
+  const activities = await repository.find({
+    where: { user: { id: parseInt(id) } },
+  });
   return response.json(activities);
 };
 
 export const saveActivity = async (request: Request, response: Response) => {
   const activity = await repository.save(request.body);
-  return response.json(activity);
-};
-
-export const getActivity = async (request: Request, response: Response) => {
-  const { id } = request.params;
-  const activity = await repository.findOneBy({ id: parseInt(id) });
   return response.json(activity);
 };
 

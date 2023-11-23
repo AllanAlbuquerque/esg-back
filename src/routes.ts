@@ -1,7 +1,7 @@
 import { Router, request, response, Request, Response } from 'express';
 import { getTasks, saveTask, getTask, updateTask, finishedTask, deleteTask } from './controller/TasksContreller';
 import { getUsers, saveUser, getUser, updateUser, deleteUser } from './controller/UserController';
-import { getActivities, saveActivity, getActivity, updateActivity, deleteActivity } from './controller/ActivityController';
+import { getActivities, saveActivity, updateActivity, deleteActivity } from './controller/ActivityController';
 
 const routes = Router();
 
@@ -25,9 +25,8 @@ routes.put('/user/:id', updateUser);
 routes.delete('/user/:id', deleteUser);
 
 // Activity
-routes.get('/activity', getActivities);
+routes.get('/activity/:id', getActivities);
 routes.post('/activity', saveActivity);
-routes.get('/activity/:id', getActivity);
 routes.put('/activity/:id', updateActivity);
 routes.delete('/activity/:id', deleteActivity);
 

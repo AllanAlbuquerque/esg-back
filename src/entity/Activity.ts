@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { User } from "./User";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { User } from './User';
 
 @Entity()
 export class Activity {
@@ -16,7 +16,7 @@ export class Activity {
   ecocoins: number;
 
   // Relationship with User entity
-  @ManyToOne(() => User, user => user.activities)
+  @ManyToOne(() => User, (user) => user.activities)
   user: User;
 }
 
